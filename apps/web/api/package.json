@@ -25,9 +25,7 @@
     "dotenv": "^16.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
-    "@wolfhub/database": "*",
-    "@wolfhub/types": "*",
-    "@wolfhub/utils": "*"
+    "@wolfhub/database": "*"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
