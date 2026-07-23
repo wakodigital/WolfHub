@@ -1,29 +1,27 @@
 {
-  "name": "WolfHub",
+  "name": "wolfhub",
   "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
-  },
-  "devDependencies": {
-    "prettier": "^3.7.4",
-    "turbo": "^2.10.6",
-    "typescript": "5.9.2"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "devEngines": {
-    "packageManager": {
-      "name": "npm",
-      "version": "11.16.0"
-    }
-  },
+  "version": "0.0.1",
+  "description": "A Real-Time Collaborative Project Management Platform",
+  "packageManager": "npm@10.2.0",
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "db:generate": "turbo run db:generate --filter=@wolfhub/database",
+    "db:migrate": "turbo run db:migrate --filter=@wolfhub/database",
+    "db:seed": "turbo run db:seed --filter=@wolfhub/database",
+    "clean": "turbo clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.10.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
