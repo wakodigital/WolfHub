@@ -1,14 +1,14 @@
-# Stage 1: Builder
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
 # Copy root workspace files
-COPY package.json package-lock.json turbo.json ./
+COPY package.json package-lock.json turbo.json tsconfig.json ./ 
 
-# Copy frontend and its dependencies
-COPY packages/types ./packages/types
-COPY packages/utils ./packages/utils
+# Copy all packages
+COPY packages ./packages
+
+# Copy frontend
 COPY apps/web ./apps/web
 
 # Install dependencies
@@ -18,7 +18,7 @@ RUN npm ci
 RUN npm run build --filter=@wolfhub/web
 
 # Stage 2: Runtime
-FROM node:18-alpine AS runtime
+FROM node:20-alpine AS runtime
 
 WORKDIR /app
 
@@ -29,8 +29,7 @@ COPY --from=builder /app/apps/web/package.json ./apps/web/package.json
 
 # Copy production dependencies
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/packages/types ./packages/types
-COPY --from=builder /app/packages/utils ./packages/utils
+COPY --from=builder /app/packages ./packages
 
 EXPOSE 3000
 

@@ -2,15 +2,20 @@
   "name": "@wolfhub/database",
   "version": "0.0.1",
   "private": true,
+  "description": "Database schema and migrations for WolfHub",
   "scripts": {
+    "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
     "db:seed": "node seed.js",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset"
   },
   "dependencies": {
     "@prisma/client": "^5.0.0"
   },
   "devDependencies": {
-    "prisma": "^5.0.0"
+    "prisma": "^5.0.0",
+    "typescript": "^5.0.0"
   }
 }
